@@ -6,17 +6,19 @@ const PROJECTS = [
   {
     title: 'Example React Application',
     description: 'A React App I built, involving JS and core web dev concepts',
-    link: https:
+    link: 'https://github.com/cmulliss/portfolio',
     image: project1
   },
   {
-    title: 'Example React Application',
-    description: 'A React App I built, involving JS and core web dev concepts',
+    title: 'My API',
+    description: 'A REST API built from scratch with GET and POST requests',
+    link: 'https://github.com/cmulliss/portfolio',
     image: project2
   },
   {
-    title: 'Example React Application',
-    description: 'A React App I built, involving JS and core web dev concepts',
+    title: 'Operating Systems Project',
+    description: 'Operating Systems',
+    link: 'https://github.com/cmulliss/portfolio',
     image: project3
   }
 ]
