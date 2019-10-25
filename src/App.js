@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import Projects from './Projects'
+import Projects from './components/Projects'
+import SocialProfiles from './components/SocialProfiles'
+import profilePic from './assets/profile1.png'
+
 
 class App extends Component {
     state = {
@@ -13,15 +16,17 @@ class App extends Component {
 
   render () {
         return (
-            <div>
-            <h1>Hello</h1>
+        <div>
+        <img src={profilePic} alt='profile' className='profilePic' />
+        <h1>Hello!</h1>
+       
         <p>My name is Cherry. I am a web developer.</p>
         <p>I enjoy working on interesting projects.</p>
         {this.state.displayBio ? (
             <div>
                 <p>I live in Somerset, UK. I code nearly everyday.</p>
                 <p>My favourite language is JavaScript, and I think React.js is amazing.</p>
-                <p>I love spending time with friends and walking in the countryside. I am also an avid reader!</p>
+                <p>I love spending time with friends and walking in the countryside.  I really like penguins and I am an avid reader!</p>
                 <button onClick={() => this.setState({displayBio: !this.state.displayBio})}>Show less</button>
               </div>
               ) : (
@@ -32,6 +37,8 @@ class App extends Component {
             }
             <hr/>
             <Projects/>
+            <hr/>
+            <SocialProfiles/>
     </div>
     )
   }

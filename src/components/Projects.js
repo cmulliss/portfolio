@@ -1,5 +1,5 @@
 import React from 'react'
-import PROJECTS from './data/projects'
+import PROJECTS from '../data/projectsData'
 import Project from './Project'
 
 const Projects = () => (
@@ -16,3 +16,4 @@ const Projects = () => (
 )
 
 export default Projects
+
