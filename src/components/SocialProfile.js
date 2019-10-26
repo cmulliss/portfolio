@@ -1,7 +1,7 @@
 import React from 'react'
 
 const SocialProfile = props => {
-  console.log('props.socialProfile', props.socialProfile)
+  // console.log('props.socialProfile', props.socialProfile)
   const { link, image } = props.socialProfile
 
   return (

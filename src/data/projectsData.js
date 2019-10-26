@@ -1,6 +1,7 @@
 import project1 from '../assets/project1.png'
 import project2 from '../assets/project2.png'
 import project3 from '../assets/project3.png'
+import project4 from '../assets/project4.png'
 
 const PROJECTS = [
   {
@@ -23,6 +24,13 @@ const PROJECTS = [
     description: 'Operating Systems',
     link: 'https://github.com/cmulliss/portfolio',
     image: project3
+  },
+  {
+    id: 4,
+    title: 'NASA Photo of the Day',
+    description: 'Astronomy photo of the day',
+    link: 'https://github.com/cmulliss/portfolio',
+    image: project4
   }
 ]
 export default PROJECTS

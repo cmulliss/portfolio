@@ -3,7 +3,7 @@ import React from 'react'
 const Project = props => {
   const { title, image, description, link } = props.project
   // same as {props.project.title} etc
-  console.log('props.project', props.project)
+  // console.log('props.project', props.project)
 
   return (
     <div style={{ display: 'inline-block', width: 300, margin: 10 }}>
