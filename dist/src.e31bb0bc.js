@@ -32143,16 +32143,24 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Title)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      titleIndex: 0
+      titleIndex: 0,
+      fadeIn: true
     });
 
     _defineProperty(_assertThisInitialized(_this), "animateTitles", function () {
-      setInterval(function () {
+      _this.titleInterval = setInterval(function () {
         var titleIndex = (_this.state.titleIndex + 1) % TITLES.length;
 
         _this.setState({
-          titleIndex: titleIndex
+          titleIndex: titleIndex,
+          fadeIn: true
         });
+
+        _this.timeout = setTimeout(function () {
+          return _this.setState({
+            fadeIn: false
+          });
+        }, 2000);
       }, 4000);
     });
 
@@ -32162,20 +32170,31 @@ function (_Component) {
   _createClass(Title, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log('Title component has mounted');
+      var _this2 = this;
+
+      this.timeout = setTimeout(function () {
+        return _this2.setState({
+          fadeIn: false
+        });
+      }, 2000);
       this.animateTitles();
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      console.log('Title component has unmounted');
-    } // setInterval takes 2 args, the 1st a callback fn, the second the rate at which we want it to fire.
-
+      clearInterval(this.titleInterval);
+      clearTimeout(this.timeout);
+    }
   }, {
     key: "render",
     value: function render() {
-      var title = TITLES[this.state.titleIndex];
-      return _react.default.createElement("p", null, "I am ", title);
+      var _this$state = this.state,
+          fadeIn = _this$state.fadeIn,
+          titleIndex = _this$state.titleIndex;
+      var title = TITLES[titleIndex];
+      return _react.default.createElement("p", {
+        className: fadeIn ? 'title-fade-in' : 'title-fade-out'
+      }, "I am ", title);
     }
   }]);
 
@@ -32265,8 +32284,8 @@ function (_Component) {
       return _react.default.createElement("div", null, _react.default.createElement("img", {
         src: _christmasphoto.default,
         alt: "profile",
-        className: "profilePic"
-      }), _react.default.createElement("h1", null, "Hello!"), _react.default.createElement("p", null, "My name is Cherry."), this.state.displayBio ? _react.default.createElement(_Title.default, null) : null, _react.default.createElement("p", null, "I enjoy working on interesting projects."), this.state.displayBio ? _react.default.createElement("div", null, _react.default.createElement("p", null, "I live in Somerset, UK. I code nearly everyday."), _react.default.createElement("p", null, "My favourite language is JavaScript, and I think React.js is amazing."), _react.default.createElement("p", null, "I love spending time with friends and walking in the countryside. I really like penguins and I am an avid reader!"), _react.default.createElement("button", {
+        className: "profile"
+      }), _react.default.createElement("h1", null, "Hello!"), _react.default.createElement("p", null, "My name is Cherry"), _react.default.createElement(_Title.default, null), _react.default.createElement("p", null, "I enjoy working on interesting projects."), this.state.displayBio ? _react.default.createElement("div", null, _react.default.createElement("p", null, "I live in Somerset, UK. I code nearly everyday."), _react.default.createElement("p", null, "My favourite language is JavaScript, and I think React.js is amazing."), _react.default.createElement("p", null, "I love spending time with friends and walking in the countryside. "), _react.default.createElement("p", null, "I really like penguins and I am an avid reader!"), _react.default.createElement("button", {
         onClick: this.toggleDisplayBio
       }, "Show less")) : _react.default.createElement("div", null, _react.default.createElement("button", {
         onClick: this.toggleDisplayBio
@@ -32277,25 +32296,7 @@ function (_Component) {
   return App;
 }(_react.Component);
 
-var _default = App; // <button onClick={this.toggleDisplayBio}>Show less</button>
-// <button
-//               onClick={() =>
-//                 this.setState({ displayBio: !this.state.displayBio })
-//               }
-//             >
-//               Show less
-//             </button>
-//           </div>
-//         ) : (
-//           <div>
-//             <button
-//               onClick={() =>
-//                 this.setState({ displayBio: !this.state.displayBio })
-//               }
-//             >
-//               Read more
-//             </button>
-
+var _default = App;
 exports.default = _default;
 },{"react":"../node_modules/react/index.js","./components/Projects":"components/Projects.js","./components/SocialProfiles":"components/SocialProfiles.js","./assets/christmasphoto.jpg":"assets/christmasphoto.jpg","./components/Title":"components/Title.js"}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -32339,7 +32340,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50790" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56928" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
