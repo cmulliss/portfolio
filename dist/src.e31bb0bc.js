@@ -31977,7 +31977,8 @@ var Projects = function Projects() {
   })));
 };
 
-var _default = Projects;
+var _default = Projects; // even getting rid or return keyword, returning directly, inline return replacing {} with (), both with fn body and mapping.
+
 exports.default = _default;
 },{"react":"../node_modules/react/index.js","../data/projectsData":"data/projectsData.js","./Project":"components/Project.js"}],"assets/email_icon.png":[function(require,module,exports) {
 module.exports = "/email_icon.d6c23642.png";
@@ -32203,6 +32204,127 @@ function (_Component) {
 
 var _default = Title;
 exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"components/Jokes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Jokes =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Jokes, _Component);
+
+  function Jokes() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, Jokes);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Jokes)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      joke: {},
+      jokes: []
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "fetchJokes", function () {
+      fetch('https://official-joke-api.appspot.com/random_ten').then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        return _this.setState({
+          jokes: json
+        });
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(Jokes, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('https://official-joke-api.appspot.com/random_joke').then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        return _this2.setState({
+          joke: json
+        });
+      });
+    } // helper method
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$state$joke = this.state.joke,
+          setup = _this$state$joke.setup,
+          punchline = _this$state$joke.punchline;
+      return _react.default.createElement("div", null, _react.default.createElement("h2", null, "Highlighted Joke"), _react.default.createElement("p", null, setup, "\xA0 ", _react.default.createElement("em", null, punchline)), _react.default.createElement("hr", null), _react.default.createElement("h3", null, "Want ten now jokes?"), _react.default.createElement("button", {
+        onClick: this.fetchJokes
+      }, "Click me!"), this.state.jokes.map(function (joke) {
+        var id = joke.id,
+            setup = joke.setup,
+            punchline = joke.punchline;
+        return _react.default.createElement("p", {
+          key: id
+        }, setup, "\xA0", _react.default.createElement("em", null, punchline, " "));
+      }));
+    }
+  }]);
+
+  return Jokes;
+}(_react.Component);
+
+var _default = Jokes; // place fetches and other aysnchronous code in the componentDidMount hook, and the end result of that ansyc code should update teh state with this.setState call when its data has finished fetching. That way the render method can pick up the change and update the component with the new data as soon as it's available.
+// fetch method returns a js promise.
+// promises are ways that js can represent the results of a value that will be resolved in the future. It's a promise of some eventually returned value
+// when that value is finally returned it's going to trigger an event that will allow us to get the result and we can handle that result by chaining the fetch, that returns a promise, with a .then handler.
+// This .then handler takes a callback fn to fire when the event is actually available, and this parameter is a return value of the promise, which in the case of a fetch is a response object.
+// .then(json => ) handles result of promise and allows us to fire another callback fn which has a json parameter
+// (response) => console.log('response:', response)
+// {
+//     "id": last joke id + 1,
+//     "type": "programming",
+//     "setup": "What's the best thing about a Boolean?",
+//     "punchline": "Even if you're wrong, you're only off by a bit."
+//   }
+
+exports.default = _default;
 },{"react":"../node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
@@ -32220,6 +32342,8 @@ var _SocialProfiles = _interopRequireDefault(require("./components/SocialProfile
 var _christmasphoto = _interopRequireDefault(require("./assets/christmasphoto.jpg"));
 
 var _Title = _interopRequireDefault(require("./components/Title"));
+
+var _Jokes = _interopRequireDefault(require("./components/Jokes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32285,11 +32409,11 @@ function (_Component) {
         src: _christmasphoto.default,
         alt: "profile",
         className: "profile"
-      }), _react.default.createElement("h1", null, "Hello!"), _react.default.createElement("p", null, "My name is Cherry"), _react.default.createElement(_Title.default, null), _react.default.createElement("p", null, "I enjoy working on interesting projects."), this.state.displayBio ? _react.default.createElement("div", null, _react.default.createElement("p", null, "I live in Somerset, UK. I code nearly everyday."), _react.default.createElement("p", null, "My favourite language is JavaScript, and I think React.js is amazing."), _react.default.createElement("p", null, "I love spending time with friends and walking in the countryside. "), _react.default.createElement("p", null, "I really like penguins and I am an avid reader!"), _react.default.createElement("button", {
+      }), _react.default.createElement("h1", null, "Hello!"), _react.default.createElement("p", null, "My name is Cherry"), _react.default.createElement(_Title.default, null), _react.default.createElement("p", null, "I enjoy working on interesting projects."), this.state.displayBio ? _react.default.createElement("div", null, _react.default.createElement("p", null, "I live in Somerset, UK. I code nearly everyday."), _react.default.createElement("p", null, "My favourite language is JavaScript, and I think React.js is amazing."), _react.default.createElement("p", null, "I love spending time with friends and walking in the countryside.", ' '), _react.default.createElement("p", null, "I really like penguins and I am an avid reader!"), _react.default.createElement("button", {
         onClick: this.toggleDisplayBio
       }, "Show less")) : _react.default.createElement("div", null, _react.default.createElement("button", {
         onClick: this.toggleDisplayBio
-      }, "Read more")), _react.default.createElement("hr", null), _react.default.createElement(_Projects.default, null), _react.default.createElement("hr", null), _react.default.createElement(_SocialProfiles.default, null));
+      }, "Read more")), _react.default.createElement("hr", null), _react.default.createElement(_Projects.default, null), _react.default.createElement("hr", null), _react.default.createElement(_SocialProfiles.default, null), _react.default.createElement("hr", null), _react.default.createElement(_Jokes.default, null));
     }
   }]);
 
@@ -32298,7 +32422,7 @@ function (_Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./components/Projects":"components/Projects.js","./components/SocialProfiles":"components/SocialProfiles.js","./assets/christmasphoto.jpg":"assets/christmasphoto.jpg","./components/Title":"components/Title.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./components/Projects":"components/Projects.js","./components/SocialProfiles":"components/SocialProfiles.js","./assets/christmasphoto.jpg":"assets/christmasphoto.jpg","./components/Title":"components/Title.js","./components/Jokes":"components/Jokes.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -32340,7 +32464,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56928" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57271" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
