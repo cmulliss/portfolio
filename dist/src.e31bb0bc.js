@@ -32238,6 +32238,17 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var Joke = function Joke(_ref) {
+  var _ref$joke = _ref.joke,
+      setup = _ref$joke.setup,
+      punchline = _ref$joke.punchline;
+  return _react.default.createElement("p", {
+    style: {
+      margin: 20
+    }
+  }, setup, " ", _react.default.createElement("em", null, punchline));
+};
+
 var Jokes =
 /*#__PURE__*/
 function (_Component) {
@@ -32268,6 +32279,8 @@ function (_Component) {
         return _this.setState({
           jokes: json
         });
+      }).catch(function (error) {
+        return alert(error.message);
       });
     });
 
@@ -32285,24 +32298,22 @@ function (_Component) {
         return _this2.setState({
           joke: json
         });
+      }).catch(function (error) {
+        return alert(error.message);
       });
-    } // helper method
-
+    }
   }, {
     key: "render",
     value: function render() {
-      var _this$state$joke = this.state.joke,
-          setup = _this$state$joke.setup,
-          punchline = _this$state$joke.punchline;
-      return _react.default.createElement("div", null, _react.default.createElement("h2", null, "Highlighted Joke"), _react.default.createElement("p", null, setup, "\xA0 ", _react.default.createElement("em", null, punchline)), _react.default.createElement("hr", null), _react.default.createElement("h3", null, "Want ten now jokes?"), _react.default.createElement("button", {
+      return _react.default.createElement("div", null, _react.default.createElement("h2", null, "Highlighted Joke"), _react.default.createElement(Joke, {
+        joke: this.state.joke
+      }), _react.default.createElement("hr", null), _react.default.createElement("h3", null, "Want ten new jokes?"), _react.default.createElement("button", {
         onClick: this.fetchJokes
       }, "Click me!"), this.state.jokes.map(function (joke) {
-        var id = joke.id,
-            setup = joke.setup,
-            punchline = joke.punchline;
-        return _react.default.createElement("p", {
-          key: id
-        }, setup, "\xA0", _react.default.createElement("em", null, punchline, " "));
+        return _react.default.createElement(Joke, {
+          key: joke.id,
+          joke: joke
+        });
       }));
     }
   }]);
@@ -32435,7 +32446,19 @@ var _App = _interopRequireDefault(require("./App"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render(_react.default.createElement(_App.default, null), document.getElementById('root'));
+_reactDom.default.render(_react.default.createElement(_App.default, null), document.getElementById('root')); // setTimeout is ansync
+// new Promise((resolve, reject) => {
+//   return reject(new Error('No bears'))
+//   setTimeout(() => {
+//     resolve('Bears, Beets, Battlestar Galactica')
+//   }, 2000)
+// })
+//   .then((quote) => {
+//     console.log(quote)
+//   })
+//   .catch((error) => console.log('error', error))
+// if calling with the fetch method, the way to handle the completion of a promise is by chaining a .then handler. Takes a callback fn itself. This callback will fire once the resolve has completed.
+// reject method if call fails, important to have return keyword to escape out of the rest of the code. Handle errors using .catch handler
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./index.css":"index.css","./App":"App.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -32464,7 +32487,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57271" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63298" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
