@@ -11,16 +11,16 @@ class Jokes extends Component {
 
   componentDidMount() {
     fetch('https://official-joke-api.appspot.com/random_joke')
-      .then((response) => response.json())
-      .then((json) => this.setState({ joke: json }))
-      .catch((error) => alert(error.message))
+      .then(response => response.json())
+      .then(json => this.setState({ joke: json }))
+      .catch(error => alert(error.message))
   }
 
   fetchJokes = () => {
     fetch('https://official-joke-api.appspot.com/random_ten')
-      .then((response) => response.json())
-      .then((json) => this.setState({ jokes: json }))
-      .catch((error) => alert(error.message))
+      .then(response => response.json())
+      .then(json => this.setState({ jokes: json }))
+      .catch(error => alert(error.message))
   }
 
   render() {
@@ -31,7 +31,7 @@ class Jokes extends Component {
         <hr />
         <h3>Want ten new jokes?</h3>
         <button onClick={this.fetchJokes}>Click me!</button>
-        {this.state.jokes.map((joke) => (
+        {this.state.jokes.map(joke => (
           <Joke key={joke.id} joke={joke} />
         ))}
       </div>
@@ -57,3 +57,19 @@ export default Jokes
 //     "setup": "What's the best thing about a Boolean?",
 //     "punchline": "Even if you're wrong, you're only off by a bit."
 //   }
+
+// setTimeout is ansync
+
+// new Promise((resolve, reject) => {
+//   return reject(new Error('No bears'))
+//   setTimeout(() => {
+//     resolve('Bears, Beets, Battlestar Galactica')
+//   }, 2000)
+// })
+//   .then((quote) => {
+//     console.log(quote)
+//   })
+//   .catch((error) => console.log('error', error))
+
+// if calling with the fetch method, the way to handle the completion of a promise is by chaining a .then handler. Takes a callback fn itself. This callback will fire once the resolve has completed.
+// reject method if call fails, important to have return keyword to escape out of the rest of the code. Handle errors using .catch handler

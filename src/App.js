@@ -3,7 +3,6 @@ import Projects from './components/Projects'
 import SocialProfiles from './components/SocialProfiles'
 import profile from './assets/christmasphoto.jpg'
 import Title from './components/Title'
-import Jokes from './components/Jokes'
 
 class App extends Component {
   state = { displayBio: false }
@@ -24,11 +23,12 @@ class App extends Component {
           <div>
             <p>I live in Somerset, UK. I code nearly everyday.</p>
             <p>
-              My favourite language is JavaScript, and I think React.js is
-              amazing.
+              My favourite language is JavaScript, and I think
+              React.js is amazing.
             </p>
             <p>
-              I love spending time with friends and walking in the countryside.{' '}
+              I love spending time with friends and walking in the
+              countryside.{' '}
             </p>
             <p>I really like penguins and I am an avid reader!</p>
             <button onClick={this.toggleDisplayBio}>Show less</button>
@@ -42,8 +42,6 @@ class App extends Component {
         <Projects />
         <hr />
         <SocialProfiles />
-        <hr />
-        <Jokes />
       </div>
     )
   }
